@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ApplicationsService = void 0;
 const common_1 = require("@nestjs/common");
 const prisma_service_1 = require("../../../prisma/prisma.service");
+const exceptions_1 = require("../../exceptions");
 let ApplicationsService = class ApplicationsService {
     constructor(prisma) {
         this.prisma = prisma;
@@ -23,6 +24,18 @@ let ApplicationsService = class ApplicationsService {
                 email: dto.email,
                 subject: dto.subject
             }
+        });
+    }
+    async getMyApplications(email) {
+        const exists = await this.prisma.application.findFirst({
+            where: { email },
+        });
+        if (!exists) {
+            throw new exceptions_1.ApiException(exceptions_1.ApiEc.ApplicationNotFound);
+        }
+        return this.prisma.application.findMany({
+            where: { email },
+            include: { admin: true },
         });
     }
 };

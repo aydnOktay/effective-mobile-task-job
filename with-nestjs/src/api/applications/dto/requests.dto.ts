@@ -1,12 +1,19 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty, IsString, IsUUID, IsArray, IsOptional } from 'class-validator';
 
-export class FeatureScoreDto {
-    @ApiProperty({ description: "Özelliğin ID'si", example: 'b563be89-18bf-4f24-a8fa-6b3e239e25fe' })
+export class CreateApplicationDto {
+    @ApiProperty({ description: "Email of member", example: 'example@test.com' })
     @IsString()
-    featureId: string;
+    email: string;
 
-    @ApiProperty({ description: 'Özelliğin puanı (1-10 arası)', example: 9 })
+    @ApiProperty({ description: 'Subject of application', example: 'Test Subject' })
     @IsNotEmpty()
-    score: number;
+    @IsString()
+    subject: string;
+
+    @ApiProperty({ description: 'Content of application', example: 'Test Content' })
+    @IsNotEmpty()
+    @IsString()
+    content: string;
+
 }

@@ -1,4 +1,5 @@
-export declare class FeatureScoreDto {
-    featureId: string;
-    score: number;
+export declare class CreateApplicationDto {
+    email: string;
+    subject: string;
+    content: string;
 }

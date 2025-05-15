@@ -10,13 +10,17 @@ exports.AdminModule = void 0;
 const common_1 = require("@nestjs/common");
 const admin_controller_1 = require("./admin.controller");
 const admin_service_1 = require("./admin.service");
+const applications_module_1 = require("../applications/applications.module");
+const applications_service_1 = require("../applications/applications.service");
+const creds_module_1 = require("../../services/creds/creds.module");
 let AdminModule = class AdminModule {
 };
 exports.AdminModule = AdminModule;
 exports.AdminModule = AdminModule = __decorate([
     (0, common_1.Module)({
+        imports: [applications_module_1.ApplicationsModule, creds_module_1.CredsModule],
         controllers: [admin_controller_1.AdminController],
-        providers: [admin_service_1.AdminService]
+        providers: [admin_service_1.AdminService, applications_service_1.ApplicationsService]
     })
 ], AdminModule);
 //# sourceMappingURL=admin.module.js.map

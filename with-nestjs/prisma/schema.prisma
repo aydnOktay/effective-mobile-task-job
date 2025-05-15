@@ -29,7 +29,7 @@ model Application {
   status      Status   @default(NEW)
   description String?
   createdAt   DateTime @default(now())
-  adminId     Int?     // Foreign key
+  adminId     Int?    
   admin       Admin?   @relation(fields: [adminId], references: [id])
 }
 
